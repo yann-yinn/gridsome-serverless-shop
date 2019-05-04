@@ -1,12 +1,26 @@
 # Default starter for Gridsome
 
-### 1. Install Gridsome CLI tool if you don't have
+## Getting started
 
-`npm install --global @gridsome/cli`
+### Pre-requisites
 
-### 2. Create a Gridsome project
+Install Yarn : https://yarnpkg.com/fr/docs/install
 
-1. `gridsome create my-gridsome-site` to install default starter
-2. `cd my-gridsome-site` to open the folder
-3. `gridsome develop` to start a local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌
+Install Gridsome CLI tool
+
+```sh
+yarn global add @gridsome/cli
+```
+
+Install Gridsome CLI tool
+
+```sh
+yarn global add netlify-cli -g
+```
+
+Clone this project and then:
+
+```sh
+yarn install
+netlify dev # build lanmbdas and launch gridsome dev mode
+```
