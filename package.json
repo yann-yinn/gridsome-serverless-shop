@@ -4,9 +4,7 @@
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "explore": "gridsome explore",
-    "now-build": "gridsome build",
-    "now-dev": "gridsome develop -p $PORT"
+    "explore": "gridsome explore"
   },
   "dependencies": {
     "gridsome": "^0.5.0"
