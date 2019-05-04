@@ -9,4 +9,4 @@
   command = "yarn build"
 
   # Directory with the lambda functions to deploy to AWS.
-  functions = "functions/"
+  functions = "server/functions/"
