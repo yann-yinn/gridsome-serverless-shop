@@ -1,0 +1,4 @@
+GRIDSOME_BASE_URL = http://localhost:8080
+GRIDSOME_FUNCTIONS_BASE_URL = http://localhost:34567
+MONGODB_URL = string
+
