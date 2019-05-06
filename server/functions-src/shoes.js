@@ -1,9 +1,8 @@
-const { CORSHeaders } = require("../lib/bootstrap");
+require("../lib/bootstrap");
 const { Shoe } = require("../lib/mongooseModels");
 
 exports.handler = function(event, context, callback) {
-  return Shoe
-    .find({})
+  return Shoe.find({})
     .then(r => {
       callback(null, {
         statusCode: 200,
