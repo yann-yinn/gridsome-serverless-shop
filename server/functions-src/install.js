@@ -1,18 +1,24 @@
+require("../lib/bootstrap");
 const { Shoe } = require("../lib/mongooseModels");
 const mongoose = require("mongoose");
-require("dotenv").config();
-
-connection = mongoose.connect(process.env.MONGODB_URL, {
-  useNewUrlParser: true
-});
 
 function installDemoData() {
   const promises = [];
+  if (mongoose.connection.collections["shoes"]) {
+    mongoose.connection.collections["shoes"].drop(() =>
+      console.log("shoes collection dropped")
+    );
+  }
   promises.push(
     Shoe.create({
       title: "Blues shoes",
       size: 40,
       description: "Nice blues shoes"
+    }),
+    Shoe.create({
+      title: "Red shoes",
+      size: 40,
+      description: "Nice red shoes"
     })
   );
   return Promise.all(promises);
