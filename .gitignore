@@ -6,4 +6,5 @@ node_modules
 dist
 .env
 .env.*
-server/functions
+server/functions/*
+!server/functions/.gitkeep
