@@ -14,6 +14,12 @@ module.exports = async store => {
           ...on NodeShoe {
             fieldShoeSize
             fieldShoePrice
+            fieldShoePhoto {
+              derivative(style:MEDIUM) {
+                height
+                url
+              }
+            }
           }
         }
       }
@@ -36,7 +42,7 @@ module.exports = async store => {
         size: entity.fieldShoeSize,
         price: entity.fieldShoePrice,
         photo: {
-          url: ""
+          url: entity.fieldShoePhoto.derivative.url
         }
       }
     };

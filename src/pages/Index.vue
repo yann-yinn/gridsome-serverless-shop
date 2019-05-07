@@ -20,8 +20,8 @@
         <template v-slot="{item: shoe}">
           <div class="card has-text-centered" style="height: 100%">
             <div style="padding:1rem;" class="card-image">
-              <figure class="image" style="height:200px;overflow:hidden">
-                <img style="object-fit: cover;" :src="shoe.photo.url" :alt="shoe.title">
+              <figure class="image" style="height:300px;overflow:hidden">
+                <g-image style="object-fit: cover;" :src="shoe.photo.url" :alt="shoe.title"/>
               </figure>
             </div>
             <div class="card-content">
