@@ -64,6 +64,14 @@ export default {
         this.shoes = this.getAllShoes();
       }
     }
+  },
+  watch: {
+    search: function(val) {
+      // if user deleted all letter, display all the products
+      if (!val) {
+        this.shoes = this.getAllShoes();
+      }
+    }
   }
 };
 </script>
