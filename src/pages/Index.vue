@@ -2,29 +2,42 @@
   <Layout>
     <section class="section">
       <div>
-        <!--
-      <form @submit.prevent="onSubmit">
-        <input type="search" v-model="search">
-        <input type="submit" value="search">
-      </form>
-        -->
+        <form @submit.prevent="onSubmit">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input class="input" type="text" placeholder="Find a repository" v-model="search">
+            </div>
+            <div class="control">
+              <input type="submit" value="search" class="button is-primary">
+            </div>
+          </div>
+        </form>
       </div>
+      <br>
+      <br>
 
       <BulmaGrid :items="shoes" itemsByRow="3">
         <template v-slot="{item: shoe}">
           <div class="card has-text-centered" style="height: 100%">
             <div style="padding:1rem;" class="card-image">
-              <figure class="image">
-                <img :src="shoe.photo.url" :alt="shoe.title">
+              <figure class="image" style="height:200px;overflow:hidden">
+                <img style="object-fit: cover;" :src="shoe.photo.url" :alt="shoe.title">
               </figure>
             </div>
             <div class="card-content">
               <div class="content">
                 <h2>{{shoe.title}}</h2>
-                <h3>size: {{shoe.size}}</h3>
-                <p>{{shoe.content}}</p>
+                <h3></h3>
+                <p>
+                  <strong>size:</strong>
+                  {{shoe.size}}
+                  <br>
+                  <strong>price:</strong>
+                  <br>
+                  {{shoe.price}}
+                </p>
               </div>
-              <g-link class="button is-primary" :to="shoe.path">Learn more</g-link>
+              <g-link class="button is-outlined" :to="shoe.path">Learn more</g-link>
             </div>
           </div>
         </template>
