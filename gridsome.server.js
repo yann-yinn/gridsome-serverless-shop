@@ -4,37 +4,11 @@
 
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
-const axios = require("axios");
+const drupalImporter = require("./src/utils/drupalImporter");
 
 module.exports = function(api) {
   // Use the Data store API here: https://gridsome.org/docs/data-store-api
   api.loadSource(async store => {
-    const result = await axios.post(process.env.GRAPHCMS_URL, {
-      query: `
-      {
-        shoes {
-          id
-          createdAt
-          title
-          price
-          size
-          status
-          photo {
-            url
-          }
-        }
-      }
-    `
-    });
-
-    const contentType = store.addContentType({
-      typeName: "Shoe",
-      route: "/shoe/:slug"
-    });
-
-    result.data.data.shoes.forEach(shoe => {
-      const node = { fields: shoe };
-      contentType.addNode(node);
-    });
+    await drupalImporter(store);
   });
 };
