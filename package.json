@@ -4,9 +4,7 @@
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "explore": "gridsome explore",
-    "functions:build": "netlify-lambda build server/functions-src",
-    "functions:serve": "netlify-lambda serve server/functions-src"
+    "explore": "gridsome explore"
   },
   "dependencies": {
     "gridsome": "^0.5.0"
