@@ -5,8 +5,20 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
-module.exports = function (api) {
+module.exports = function(api) {
   api.loadSource(store => {
     // Use the Data store API here: https://gridsome.org/docs/data-store-api
-  })
-}
+    const shoes = store.addContentType({
+      typeName: "Shoe",
+      route: "/shoe/:id"
+    });
+    shoes.addNode({
+      id: "2",
+      title: "My first blog post",
+      fields: {
+        size: "40",
+        description: "My value"
+      }
+    });
+  });
+};

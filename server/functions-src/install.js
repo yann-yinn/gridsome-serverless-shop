@@ -1,5 +1,5 @@
-require("../lib/bootstrap");
-const { Shoe } = require("../lib/mongooseModels");
+require("../utils/bootstrap");
+const { Shoe } = require("../utils/mongooseModels");
 const mongoose = require("mongoose");
 
 function installDemoData() {
