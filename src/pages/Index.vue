@@ -1,19 +1,37 @@
 <template>
   <Layout>
-    <div>
+    <section class="section">
+      <div>
+        <!--
       <form @submit.prevent="onSubmit">
         <input type="search" v-model="search">
         <input type="submit" value="search">
       </form>
-    </div>
+        -->
+      </div>
 
-    <div v-for="shoe in shoes" :key="shoe.id">
-      <h2>{{shoe.title}}</h2>
-      <img :src="shoe.photo.url" width="200px">
-      <h3>size: {{shoe.size}}</h3>
-      <p>{{shoe.content}}</p>
-      <g-link :to="shoe.path">Learn more</g-link>
-    </div>
+      <BulmaGrid :items="shoes" itemsByRow="3">
+        <template v-slot="{item: shoe}">
+          <div class="card has-text-centered" style="height: 100%">
+            <div style="padding:1rem;" class="card-image">
+              <figure class="image">
+                <img :src="shoe.photo.url" :alt="shoe.title">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="content">
+                <h2>{{shoe.title}}</h2>
+                <h3>size: {{shoe.size}}</h3>
+                <p>{{shoe.content}}</p>
+              </div>
+              <g-link class="button is-primary" :to="shoe.path">Learn more</g-link>
+            </div>
+          </div>
+        </template>
+      </BulmaGrid>
+
+      <div v-for="shoe in shoes" :key="shoe.id"></div>
+    </section>
   </Layout>
 </template>
 
@@ -38,7 +56,11 @@
 </page-query>
 
 <script>
+import BulmaGrid from "../components/BulmaGrid";
 export default {
+  components: {
+    BulmaGrid
+  },
   metaInfo: {
     title: "Welcome to vinted shoes"
   },
@@ -75,4 +97,5 @@ export default {
   }
 };
 </script>
+
 
