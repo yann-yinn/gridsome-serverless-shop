@@ -4,21 +4,40 @@
 
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
+const axios = require("axios");
 
 module.exports = function(api) {
+  // Use the Data store API here: https://gridsome.org/docs/data-store-api
   api.loadSource(store => {
-    // Use the Data store API here: https://gridsome.org/docs/data-store-api
-    const shoes = store.addContentType({
-      typeName: "Shoe",
-      route: "/shoe/:id"
-    });
-    shoes.addNode({
-      id: "2",
-      title: "My first blog post",
-      fields: {
-        size: "40",
-        description: "My value"
-      }
-    });
+    return axios
+      .post(process.env.GRAPHCMS_URL, {
+        query: `{
+          shoes {
+            title
+            size
+            content
+            id
+            createdAt
+            price
+          } 
+       }`
+      })
+      .then(result => {
+        const contentType = store.addContentType({
+          typeName: "Shoe",
+          route: "/shoe/:id"
+        });
+        //console.log("r", JSON.stringify(result.data, 0, 1));
+        result.data.data.shoes.forEach(shoe => {
+          contentType.addNode({
+            title: shoe.title,
+            content: shoe.content,
+            fields: {
+              price: shoe.price,
+              size: shoe.size
+            }
+          });
+        });
+      });
   });
 };

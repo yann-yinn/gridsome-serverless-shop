@@ -1,4 +1,3 @@
-GRIDSOME_BASE_URL = http://localhost:8080
-GRIDSOME_FUNCTIONS_BASE_URL = http://localhost:9000/.netlify/functions
-MONGODB_URL = "mongodb://USER:PASSWORD@DOMAIN/DATABASE"
+GRIDSOME_FUNCTIONS_BASE_URL = http://localhost:34567
+GRAPHCMS_URL = "https://api-euwest.graphcms.com/v1/cjvdogbfl01k001ghd9ny5thr/master"
 
