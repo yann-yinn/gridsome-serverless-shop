@@ -4,7 +4,7 @@ module.exports = async store => {
   const result = await axios.post(process.env.DRUPAL_URL, {
     query: `
     {
-      nodeQuery(filter:{conditions:{field:"type", value: "shoe"}}){
+      nodeQuery(limit: 300, filter:{conditions:{field:"type", value: "shoe"}}){
         entities {
           entityId
           entityLabel
@@ -26,17 +26,17 @@ module.exports = async store => {
     }
 `
   });
-  console.log("r", JSON.stringify(result.data.data, 0, 2));
 
   const contentType = store.addContentType({
     typeName: "Shoe",
-    route: "/shoe/:entityId"
+    route: "/shoe/:id"
   });
 
   console.log("before forEach");
   result.data.data.nodeQuery.entities.forEach(entity => {
     const node = {
       fields: {
+        id: entity.entityId,
         title: entity.entityLabel,
         path: entity.entityUrl.path,
         size: entity.fieldShoeSize,

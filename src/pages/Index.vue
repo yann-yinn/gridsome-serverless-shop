@@ -15,12 +15,12 @@
       </div>
       <br>
       <br>
-
-      <BulmaGrid :items="shoes" itemsByRow="3">
+      <Pager :info="$page.allShoe.pageInfo"/>
+      <BulmaGrid :items="shoes" itemsByRow="4">
         <template v-slot="{item: shoe}">
           <div class="card has-text-centered" style="height: 100%">
             <div style="padding:1rem;" class="card-image">
-              <figure class="image" style="height:300px;overflow:hidden">
+              <figure class="image" style="height:100px;overflow:hidden">
                 <g-image style="object-fit: cover;" :src="shoe.photo.url" :alt="shoe.title"/>
               </figure>
             </div>
@@ -49,8 +49,12 @@
 </template>
 
 <page-query>
-{
-  allShoe {
+query($page: Int){
+  allShoe(perPage:10, page: $page) @paginate {
+    pageInfo {
+      totalPages
+      currentPage
+    }
     edges {
       node {
         price
@@ -70,9 +74,11 @@
 
 <script>
 import BulmaGrid from "../components/BulmaGrid";
+import { Pager } from "gridsome";
 export default {
   components: {
-    BulmaGrid
+    BulmaGrid,
+    Pager
   },
   metaInfo: {
     title: "Welcome to vinted shoes"
