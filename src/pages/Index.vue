@@ -1,33 +1,70 @@
 <template>
   <Layout>
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135"/>
+    <div>
+      <form @submit.prevent="onSubmit">
+        <input type="search" v-model="search">
+        <input type="submit" value="search">
+      </form>
+    </div>
 
-    <h1>Hello, world!</h1>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores</p>
-
-    <p class="home-links">
-      <a href="https://gridsome.org/docs" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
+    <div v-for="shoe in shoes" :key="shoe.id">
+      <h2>{{shoe.title}}</h2>
+      <img :src="shoe.photo.url" width="200px">
+      <h3>size: {{shoe.size}}</h3>
+      <p>{{shoe.content}}</p>
+      <g-link :to="shoe.path">Learn more</g-link>
+    </div>
   </Layout>
 </template>
+
+<page-query>
+{
+  allShoe {
+    edges {
+      node {
+        price
+        content
+        size
+        title
+        path
+        id
+        photo {
+          url
+        }
+      }
+    }
+  }
+}
+</page-query>
 
 <script>
 export default {
   metaInfo: {
-    title: "Hello, world!"
+    title: "Welcome to vinted shoes"
+  },
+  data() {
+    return {
+      search: "",
+      shoes: []
+    };
   },
   created() {
-    this.GRIDSOME_BASE_URL = process.env.GRIDSOME_BASE_URL;
-    this.GRIDSOME_FUNCTIONS_BASE_URL = process.env.GRIDSOME_FUNCTIONS_BASE_URL;
+    this.shoes = this.getAllShoes();
+  },
+  methods: {
+    getAllShoes() {
+      return [...this.$page.allShoe.edges.map(edge => edge.node)];
+    },
+    onSubmit() {
+      if (this.search) {
+        this.shoes = this.getAllShoes().filter(shoe =>
+          shoe.title.toLowerCase().includes(this.search.toLowerCase())
+        );
+      } else {
+        this.shoes = this.getAllShoes();
+      }
+    }
   }
 };
 </script>
 
-<style>
-.home-links a {
-  margin-right: 1rem;
-}
-</style>
