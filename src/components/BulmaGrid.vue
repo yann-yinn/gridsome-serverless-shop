@@ -1,8 +1,18 @@
+<!--
+Create automatically a Bulma css Grid from :items
+Example :
+  <BulmaGrid :items="persons" :itemsByRow="3" :itemKey="(item, index) => item.id">
+    <template slot-scope="props">
+      <PersonCard :person="props.item" />
+    </template>
+  </BulmaGrid>
+-->
+
 <template>
   <div>
     <div class="columns" v-for="(column, rowIndex) in columns" :key="rowIndex">
-      <div v-for="(item, index) in column" :key="index" :class="columnClasses">
-        <slot :item="item"></slot>
+      <div v-for="(item, index) in column" :key="itemKey(item, index)" :class="columnClasses">
+        <slot :item="item" :index="index"></slot>
       </div>
     </div>
   </div>
@@ -11,8 +21,18 @@
 <script>
 export default {
   props: {
-    itemsByRow: { type: String, default: "4" },
-    items: { type: Array, default: [] }
+    itemsByRow: {
+      type: String,
+      default: "4"
+    },
+    itemKey: {
+      type: Function,
+      default: (item, index) => index
+    },
+    items: {
+      type: Array,
+      default: []
+    }
   },
   computed: {
     columnClasses() {
