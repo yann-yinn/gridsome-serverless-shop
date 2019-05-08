@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-function getShoes(limit = 100, offset = 0) {
+function getShoes({ limit = 100, offset = 0 }) {
   return axios.post(process.env.DRUPAL_URL, {
     variables: {
       limit,
@@ -44,7 +44,7 @@ module.exports = async store => {
   let limit = 100;
   let offset = 0;
   do {
-    result = await getShoes(limit, offset);
+    result = await getShoes({ limit, offset });
     offset = offset + limit;
     console.log("getShoes", limit, offset);
     result.data.data.nodeQuery.entities.forEach(entity => {
