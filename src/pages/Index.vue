@@ -15,7 +15,7 @@
       </div>
       <br>
       <br>
-      <Pager :info="$page.allShoe.pageInfo"/>
+      <Pager class="pager" :info="$page.allShoe.pageInfo"/>
       <BulmaGrid :items="shoes" itemsByRow="4">
         <template v-slot="{item: shoe}">
           <div class="card has-text-centered" style="height: 100%">

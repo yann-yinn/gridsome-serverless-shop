@@ -41,12 +41,12 @@ module.exports = async store => {
     route: "/shoe/:id"
   });
 
-  let limit = 100;
+  let limit = 500;
   let offset = 0;
   do {
+    console.log("getShoes", limit, "from offset", offset);
     result = await getShoes({ limit, offset });
     offset = offset + limit;
-    console.log("getShoes", limit, offset);
     result.data.data.nodeQuery.entities.forEach(entity => {
       const node = {
         fields: {

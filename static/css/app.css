@@ -1,0 +1,9 @@
+.pager {
+  margin: 1rem;
+}
+
+.pager a {
+  border: solid #00d1b2 1px;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
