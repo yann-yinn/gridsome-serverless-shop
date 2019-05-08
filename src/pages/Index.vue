@@ -50,7 +50,7 @@
 
 <page-query>
 query($page: Int){
-  allShoe(perPage:10, page: $page) @paginate {
+  allShoe(perPage:100, page: $page) @paginate {
     pageInfo {
       totalPages
       currentPage
