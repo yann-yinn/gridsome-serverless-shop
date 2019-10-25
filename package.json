@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "axios": "^0.18.0",
-    "mongoose": "^5.5.5",
+    "mongoose": "^5.7.5",
     "netlify-lambda": "^1.4.7"
   }
 }
